@@ -134,10 +134,10 @@ div.progress div.indeterminate {
 	background-color: var(--P900);
 }
 
-input[type=text] {
+input {
 	color: var(--B50);
 }
-input[type=text]:focus {
+input:focus {
 	color: var(--B50);
 	border-bottom:1px solid var(--PA200) !important;
 	box-shadow: 0 1px 0 0 var(--PA200) !important;
@@ -155,7 +155,7 @@ a.btn-floating[action=new] {
 	background-color: var(--S700);
 }
 a.btn-floating[action=new]:hover {
-	background-color: var(--O800);
+	background-color: var(--S900);
 }
 a.btn-floating[action=new]:hover i{
 	color: var(--B100);

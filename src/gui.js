@@ -11,7 +11,8 @@ global.obs = {
 		obsSocket: require("./socket.js"),
 		storage: require("./storage"),
 		queue: require("./queue"),
-		popup: require("./popup")
+		popup: require("./popup"),
+		midi: require("./midi"),
 	},
 	functions: {
 		options: require("./optionsManager"),
@@ -21,6 +22,7 @@ global.obs = {
 	loader: require("./loader"),
 	arguments: {},
 	UID: require("./_UIDGen"),
+	actions: { temporary: { } }
 }
 obs.loader.show()
 obs.loader.title("Loading")
@@ -29,6 +31,9 @@ global.obs.storage = new obs.process.storage();
 global.obs.socket = new obs.process.obsSocket();
 global.obs.actionListener = new obs.functions.actionListen();
 global.obs.actionManager = new obs.functions.actionMan();
+setTimeout(()=>{
+	obs.socket.connect();
+},250)
 
 $(document).ready(()=>{
 	setTimeout(()=>{

@@ -11,6 +11,8 @@ class Storage {
 		} else {
 			localStorage.OBSSocket_allow = true;
 		}
+		localStorage.MIDI_IN_latestDevice = null;
+		localStorage.MIDI_OUT_latestDevice = null;
 
 		console.debug("[Storage] Temporary Variables Emptied");
 	}

@@ -10,9 +10,10 @@ div.popupWindow {
 
 	display:none;
 }
-div.popupWindow input[type=text] {
+div.popupWindow input[type=text],
+div.popupWindow input[type=number] {
 	height: 20px;
-	width: 100px;
+	max-width: 100px;
 }
 div.blurbg{
 	height:100%;
@@ -114,15 +115,39 @@ div.popupWindow div.createBinding ul.bindingOptions li {
 div.popupWindow div.createBinding a.btn-floating[action=new] {
 	float: right;
 }
-div.popupWindow div.createBinding table.bindEditor td {
+div.popupWindow div.createBinding table.actionEditor td {
 	padding: 0;
 	padding-left: 3px;
 	padding-right: 3px;
 }
-div.popupWindow div.createBinding table.bindEditor td select{
+div.popupWindow div.createBinding table.actionEditor td select{
 	width: 130px;
 	height: 32px;
 
 	padding: 0;
 	margin: 0;
+}
+div.popupWindow div.createBinding table.actionEditor td[type=actionOption] ul li {
+	display: inline;
+}
+div.popupWindow div.createBinding table.actionEditor td[type=actionOptions][data=MIDI] span:hover {
+	cursor:pointer;
+}
+div.popupWindow div.createBinding table.actionEditor td[type=actionRequest] {
+	width: 136px;
+}
+div.popupWindow div.createBinding table.actionEditor td[type=selectAction] {
+	width: 136px;
+}
+div.popupWindiw div.createBinding table.actionEditor select {
+	max-width: 130px;
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+table.actionEditor td[type=requestOptions] ul[type=requestOptions] {
+	margin: 0;
+}
+table.actionEditor td[type=requestOptions] ul[type=requestOptions] li {
+	display: inline-block;
 }
