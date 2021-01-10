@@ -1,0 +1,128 @@
+div.popupWindow {
+	width: 100%;
+	height: 100%;
+
+	position:fixed;
+	top:0;
+	left:0;
+
+	z-index: 100000000;
+
+	display:none;
+}
+div.popupWindow input[type=text] {
+	height: 20px;
+	width: 100px;
+}
+div.blurbg{
+	height:100%;
+	width:100%;
+
+	position: fixed;
+	top:0;
+	left:0;
+
+	backdrop-filter: blur(2px);
+
+	z-index: 10;
+}
+div.popupWindow div.blurbg div.container {
+	height: 90vh;
+	width: 90vw;
+
+	position: fixed;
+	left: 5vw;
+	top: 5vh;
+
+	background-color: var(--B700);
+
+	border-radius: 5px;
+}
+div.popupWindow div.controls [position=right] {
+	position: fixed;
+	top: calc(5vh + 5px);
+	right: calc(5vw + 5px);
+}
+div.popupWindow div.controls [position=left] {
+	position: fixed;
+	top: calc(5vh + 5px);
+	left: calc(5vw + 5px);
+}
+div.popupWindow div.controls i {
+	transition: 250ms;
+}
+div.popupWindow div.controls i:hover {
+	transition: 250ms;
+	transform: scale(1.25);
+	cursor: pointer;
+}
+div.popupWindow div.controls {
+	height: 36px;
+	width: 90vw;
+
+	position: fixed;
+	top: calc(5vh - 6px);
+	left: calc(5vw);
+
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+div.popupWindow div.contentContainer {
+	height: calc(90vh - 24px);
+	width: calc(90vw);
+
+	position: fixed;
+	top: 10vh;
+	left: 5vw;
+
+	background-color: var(--B800);
+	border-radius: 5px;
+
+	padding: 0;
+	padding: 15px;
+
+	overflow-y: auto;
+	overflow-x: auto;
+}
+div.popupWindow div.createBinding ul li {
+	font-weight: bold;
+
+	display: inline;
+
+	margin-right: 5px;
+	margin-left: 5px;
+}
+div.popupWindow div.createBinding ul li span {
+	font-weight: normal;
+}
+div.popupWindow div.createBinding ul[type=bindInfo] {
+	text-align:center;
+
+	margin: 0;
+	margin-bottom: 5px;
+}
+div.popupWindow div.createBinding ul.bindingOptions {
+	width: 86vw;
+
+	position: fixed;
+	bottom: 5vh;
+	left: 7vw;
+}
+div.popupWindow div.createBinding ul.bindingOptions li {
+	margin: 0;
+}
+div.popupWindow div.createBinding a.btn-floating[action=new] {
+	float: right;
+}
+div.popupWindow div.createBinding table.bindEditor td {
+	padding: 0;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+div.popupWindow div.createBinding table.bindEditor td select{
+	width: 130px;
+	height: 32px;
+
+	padding: 0;
+	margin: 0;
+}

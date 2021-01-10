@@ -1,0 +1,40 @@
+div.navPadding {
+	padding-bottom: 35px;
+}
+
+div.navbar {
+	position:fixed;
+	top:0;
+	left:0;
+	width: 100vw;
+	height: 24px;
+
+	line-height: 24px;
+
+	background-color: var(--B800);
+	z-index: 1000000000000;
+}
+
+div.navbar ul {
+	width: calc(100% - 30px);
+	padding: 0;
+	margin:0;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+div.navbar ul li{
+	list-style: none;
+	display: inline;
+	float: right;
+}
+div.navbar ul li.title {
+	float: left;
+}
+div.navbar ul span {
+	transition: 250ms;
+}
+div.navbar ul span[type=link]:hover {
+	transition: 250ms;
+	transform: scale(1.5);
+	cursor: pointer;
+}

@@ -1,0 +1,162 @@
+:root {
+	--P50: #E3F2FD;
+	--P100: #BBDEFB;
+	--P200: #90CAF9;
+	--P300: #64B5F6;
+	--P400: #43A5F5;
+	--P500: #2196F3;
+	--P600: #1E88F5;
+	--P700: #1976D2;
+	--P800: #1565C0;
+	--P900: #0D47A1;
+	--PA100: #82B1FF;
+	--PA200: #448AFF;
+	--PA400: #2979FF;
+	--PA700: #2962FF;
+
+	--S50: #E8F5E9;
+	--S100: #C8E6C9;
+	--S200: #A5D6A7;
+	--S300: #81C784;
+	--S400: #66BB6A;
+	--S500: #4CAF50;
+	--S600: #43A047;
+	--S700: #388E3C;
+	--S800: #2E7D32;
+	--S900: #1B5E20;
+	--SA100: #B9F6CA;
+	--SA200: #69F0AE;
+	--SA400: #00E676;
+	--SA700: #00C853;
+
+	--O50: #F3E5F5;
+	--O100: #E1BEE7;
+	--O200: #CE93D8;
+	--O300: #BA68C8;
+	--O400: #AB47BC;
+	--O500: #9C27B0;
+	--O600: #8E24AA;
+	--O700: #7B1FA2;
+	--O800: #6A1B9A;
+	--O900: #4A148C;
+	--OA100: #EA80FC;
+	--OA200: #E040FB;
+	--OA400: #D500F9;
+	--OA700: #AA00FF;
+
+	--B50: #ECEFF1;
+	--B100: #CFD8DC;
+	--B200: #B0BEC5;
+	--B300: #90A4AE;
+	--B400: #78909C;
+	--B500: #607D8B;
+	--B600: #546E7A;
+	--B700: #455A64;
+	--B800: #37474F;
+	--B900: #263238;
+
+	--ERROR: #B00020;
+	--ON_ERROR: var(--B50);
+
+	--BACKGROUND: var(--B900);
+	--ON_BACKGROUND: var(--B100);
+
+	--SURFACE: var(--B800);
+	--ON_SURFACE: var(--B100);
+
+	--P: var(--PA700);
+	--PV: var(--P900);
+	--ON_P: var(--B100);
+	--ON_PV: var(--B50);
+
+	--S: var(--S800);
+	--SV: var(--S900);
+	--ON_S: var(--B100);
+	--ON_SV: var(--B50);
+}
+
+/* Primary Colors */
+.P50{   color: var(--P50); background-color: var(--B900); }
+.P100{  color: var(--P100); background-color: var(--B800); }
+.P200{  color: var(--P200); background-color: var(--B700); }
+.P300{  color: var(--P300); background-color: var(--B600); }
+.P400{  color: var(--P400); background-color: var(--B600); }
+.P500{  color: var(--P500); background-color: var(--B300); }
+.P600{  color: var(--P600); background-color: var(--B300); }
+.P700{  color: var(--P700); background-color: var(--B100); }
+.P800{  color: var(--P800); background-color: var(--B50); }
+.P900{  color: var(--P900); background-color: var(--B50); }
+.PA100{ color: var(--PA100); background-color: var(--B900); }
+.PA200{ color: var(--PA200); background-color: var(--B900); }
+.PA400{ color: var(--PA400); background-color: var(--B800); }
+.PA700{ color: var(--PA700); background-color: var(--B700); }
+
+/* Secondary Colors */
+.S50{   color: var(--S50); background-color: var(--B900); }
+.S100{  color: var(--S100); background-color: var(--B800); }
+.S200{  color: var(--S200); background-color: var(--B700); }
+.S300{  color: var(--S300); background-color: var(--B600); }
+.S400{  color: var(--S400); background-color: var(--B600); }
+.S500{  color: var(--S500); background-color: var(--B300); }
+.S600{  color: var(--S600); background-color: var(--B300); }
+.S700{  color: var(--S700); background-color: var(--B100); }
+.S800{  color: var(--S800); background-color: var(--B50); }
+.S900{  color: var(--S900); background-color: var(--B50); }
+.SA100{ color: var(--SA100); background-color: var(--B900); }
+.SA200{ color: var(--SA200); background-color: var(--B900); }
+.SA400{ color: var(--SA400); background-color: var(--B800); }
+.SA700{ color: var(--SA700); background-color: var(--B700); }
+
+body {
+	background-color: var(--BACKGROUND);
+	color: var(--ON_BACKGROUND);
+}
+
+a.btn {
+	color: var(--ON_P);
+	background-color: var(--P);
+}
+a.btn:hover {
+	color: var(--ON_PV);
+	background-color: var(--PV);
+}
+
+a.btn[action=delete],
+a.btn[action=remove] {
+	color: var(--ON_ERROR);
+	background-color: var(--ERROR);
+}
+
+div.progress {
+	background-color: var(--P100);
+}
+div.progress div.indeterminate {
+	background-color: var(--P900);
+}
+
+input[type=text] {
+	color: var(--B50);
+}
+input[type=text]:focus {
+	color: var(--B50);
+	border-bottom:1px solid var(--PA200) !important;
+	box-shadow: 0 1px 0 0 var(--PA200) !important;
+	-webkit-box-shadow: 0 1px 0 0 var(--PA200) !important;
+}
+input[type=checkbox] {
+	position: static !important;
+	opacity: 1 !important;
+	pointer-events: all !important;
+	height: 20px;
+	width: 20px;
+}
+
+a.btn-floating[action=new] {
+	background-color: var(--S700);
+}
+a.btn-floating[action=new]:hover {
+	background-color: var(--O800);
+}
+a.btn-floating[action=new]:hover i{
+	color: var(--B100);
+}

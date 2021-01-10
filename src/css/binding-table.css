@@ -1,0 +1,17 @@
+div.bindings {
+	width: 96vw;
+	margin-left: 2vw;
+	margin-right: 2vw;
+}
+
+div.bindings table tr {
+	border-bottom: solid 1px var(--B400);
+}
+
+div.bindings table tr td,
+div.bindings table tr th {
+	font-size: 11pt;
+	padding: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
