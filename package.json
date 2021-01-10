@@ -1,6 +1,6 @@
 {
-  "name": "obsmidicontrol",
-  "productName": "obsmidicontrol",
+  "name": "OBS-Proton",
+  "productName": "OBS-Proton",
   "version": "0.1.0",
   "description": "My Electron application description",
   "main": "src/index.js",
@@ -24,7 +24,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "obsmidicontrol"
+            "name": "OBS-Proton"
           }
         },
         {
