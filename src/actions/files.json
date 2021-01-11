@@ -1,0 +1,16 @@
+{
+	"midi": [
+		"midi"
+	],
+	"obs": [
+		"Transition",
+		"Profile",
+		"Streaming",
+		"Recording",
+		"Replay",
+		"Source",
+		"Media",
+		"Scene",
+		"Studio"
+	]
+}
