@@ -15,6 +15,11 @@ class Storage {
 		localStorage.MIDI_OUT_latestDevice = null;
 
 		console.debug("[Storage] Temporary Variables Emptied");
+
+		setInterval(()=>{
+			localStorage.EventTesting = "false";
+			localStorage.EventTesting_UID = "null"
+		},30000)
 	}
 	defaultBindings(g_type) {
 		console.debug(`[Storage] Reset Bindings for '${g_type}'`)
