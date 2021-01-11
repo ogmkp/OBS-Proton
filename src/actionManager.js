@@ -54,20 +54,7 @@ module.exports.actionHandle = async (g_action,g_uid) => {
 	var ActionHTMLContent = `<!-- -->`;
 	switch (g_action) {
 		case "MIDIInput":
-			ActionHTMLContent = `<span><span type="controller">No Device Set</span> C:<span type="channel">0</span> N:<span type="note">0</span> V:<span type="velocity">0</span></span>`;
-			$(`table.actionEditor tr[UID=${g_uid}] td[type=actionOptions]`).attr('data','MIDI');
-			obs.actions.temporary[g_uid].input = {
-				actionType: "midi",
-				type: "input",
-				controller: '',
-				channel: 0,
-				note: 0,
-				velocity: 0,
-				note_type: "noteon",
-				doToggle: false,
-				toggleStatus: null,
-				hold_duration: 1,
-			}
+			return
 			break;
 		default:
 			obs.actions.temporary[g_uid].input = {
@@ -75,10 +62,10 @@ module.exports.actionHandle = async (g_action,g_uid) => {
 				type: "event",
 				request: g_action,
 			}
+			$(`table.actionEditor tr[UID=${g_uid}] td[type=actionOptions]`).html(ActionHTMLContent);
+			console.debug(`[ActionManager] Populated Input for UID '${g_uid}'`,obs.actions.temporary[g_uid].input)
 			break;
 	}
-	$(`table.actionEditor tr[UID=${g_uid}] td[type=actionOptions]`).html(ActionHTMLContent);
-	console.debug(`[ActionManager] Populated Input for UID '${g_uid}'`,obs.actions.temporary[g_uid].input)
 }
 module.exports.requestHandle = async (g_request,g_uid) => {
 	var RequestHTMLContent = `<!-- -->`;
@@ -258,6 +245,8 @@ module.exports.requestHandle = async (g_request,g_uid) => {
 module.exports.jqueryListener = async () => {
 	var MIDIListener = new obs.process.midi();
 	var easyMIDI = obs.modules.ezmidi;
+	global.obs.actionHandler = new obs.process.actions();
+	global.obs.requestHandler = new obs.process.requests();
 	obs.modules.ezmidi.getInputs().forEach((g_input)=>{
 		var Input = new easyMIDI.Input(g_input)
 		Input.on('noteon',(data)=>{
@@ -270,6 +259,7 @@ module.exports.jqueryListener = async () => {
 			data.device = g_input;
 			localStorage.MIDI_IN_latestDevice = JSON.stringify(tmpMIDI);
 			console.debug(`[MIDI] Recieved MIDI Input`,data)
+			obs.actionHandler.event('midi',data)
 		})
 	})
 	easyMIDI.getOutputs().forEach((g_output)=>{
@@ -279,7 +269,7 @@ module.exports.jqueryListener = async () => {
 			<option data="${g_output}">${g_output}</option>
 			`)
 	})
-	$("table.actionEditor td[type=actionOptions][data=MIDI]").click((me)=>{
+	/*$("table.actionEditor td[type=actionOptions][data=MIDI]").click((me)=>{
 		var UID = "";
 		if (me.target.outerHTML.startsWith(`<span type="`)) {
 			UID = me.target.parentElement.parentElement.parentElement.attributes.uid.value;
@@ -308,7 +298,7 @@ module.exports.jqueryListener = async () => {
 			$(`table.actionEditor tr[uid=${UID}] td[type=actionOptions][data=MIDI] [type=velocity]`).html(action.velocity)
 			console.debug(`[ActionManager] Saved UID ${UID} with data;`,obs.actions.temporary[`${UID}`].input)
 		}
-	})
+	})*/
 	$("table.actionEditor td[type=selectAction] select").change((me)=>{
 		var selectedOption = $("table.actionEditor td[type=selectAction] select option:selected")[0].attributes.data.value;
 		console.log($("table.actionEditor td[type=selectAction] select option:selected"))
@@ -358,6 +348,14 @@ module.exports.jqueryListener = async () => {
 		} else {
 			uid = me.target.parentElement.parentElement.parentElement.parentElement.attributes.uid.value;
 		}
+
+		if (localStorage.EventTesting == "false") {
+			localStorage.EventTesting = "true"
+		} else {
+			localStorage.EventTesting = "false"
+		}
+
+		localStorage.EventTesting_UID = uid;
 
 		if (obs.actions.temporary[`${uid}`].input == undefined || obs.actions.temporary[`${uid}`].output == undefined) {
 			// yeah nah fuck off
@@ -579,50 +577,8 @@ module.exports.defaultHTML = () => {
 					</optgroup>
 				</select>
 			</td>
-			<td type="requestOptions" data="MIDI">
-				<table>
-					<tr>
-						<td>
-							<select class="browser-default" type="MIDIOutput">
-
-							</select>
-						</td>
-						<td>
-							<select class="browser-default" type="MIDIType">
-								<option data="noteon">Note On</option>
-								<!--option data="noteoff">Note Off</option>
-								<option data="poly aftertouch">Poly Aftertouch</option>
-								<option data="cc">CC</option>
-								<option data="program">Program</option>
-								<option data="channel aftertouch">Channel Aftertouch</option>
-								<option data="pitch">Pitch</option>
-								<option data="position">Position</option>
-								<option data="mtc">Timecode</option>
-								<option data="select">Select</option>
-								<option data="clock">Clock</option>
-								<option data="start">Start</option>
-								<option data="continue">Continue</option>
-								<option data="stop">Stop</option>
-								<option data="activesense">MIDI Active Sense</option>
-								<option data="reset">Reset</option-->
-							</select>
-						</td>
-					</tr>
-				</table>
-				<ul type="requestOptions">
-					<li>
-						<label for="channelPicker">Channel</label>
-						<input type="number" id="channelPicker" min="0" max="15"/>
-					</li>
-					<li>
-						<label for="note">Note</label>
-						<input type="number" id="note" min="0" max="127"/>
-					</li>
-					<li>
-						<label for="velocity">Velocity</label>
-						<input type="number" id="velocity" min="0" max="127"/>
-					</li>
-				</ul>
+			<td type="requestOptions">
+				
 			</td>
 		</tr>
 	</table>
