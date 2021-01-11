@@ -13,6 +13,8 @@ global.obs = {
 		queue: require("./queue"),
 		popup: require("./popup"),
 		midi: require("./midi"),
+		actions: require("./actions/handler"),
+		requests: require("./request/handler")
 	},
 	functions: {
 		options: require("./optionsManager"),
