@@ -1,0 +1,33 @@
+{
+	"midi": [
+		"MIDIOutput"
+	],
+	"obs": [
+		"OpenProjector",
+		"TriggerHotkeyByName",
+		"TriggerHotkeyBySequence",
+		"PlayPauseMedia",
+		"RestartMedia",
+		"StopMedia",
+		"NextMedia",
+		"PreviousMedia",
+		"SetVolume",
+		"ToggleMute",
+		"SetMute",
+		"TakeSourceScreenshot",
+		"SetCurrentProfile",
+		"PlayPauseRecording",
+		"StartRecording",
+		"StopRecording",
+		"PauseRecording",
+		"ResumeRecording",
+		"PlayPauseReplayBuffer",
+		"StartReplayBuffer",
+		"StopReplayBuffer",
+		"SaveReplayBuffer",
+		"SetCurrentScene",
+		"StartStopStreaming",
+		"StartStreaming",
+		"StopStreaming"
+	]
+}
