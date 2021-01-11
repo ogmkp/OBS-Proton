@@ -42,8 +42,8 @@ module.exports = (g_uid) => {
 </table>
 <ul type="requestOptions">
 	<li>
-		<label for="channelPicker">Channel</label>
-		<input type="number" id="channelPicker" min="0" max="15"/>
+		<label for="channel">Channel</label>
+		<input type="number" id="channel" min="0" max="15"/>
 	</li>
 	<li>
 		<label for="note">Note</label>
@@ -60,38 +60,31 @@ module.exports = (g_uid) => {
 	module.exports.listener(g_uid)
 }
 module.exports.listener = (g_uid) => {
+	console.log("CUNMTTT")
 	$(`table.actionEditor tr[uid=${g_uid}] td[type=requestOptions][data=MIDI] input`).change(()=>{
+		module.exports.changeHandle(g_uid)
+	})
+	$(`table.actionEditor tr[uid=${g_uid}] td[type=requestOptions][data=MIDI] select`).change(()=>{
 		module.exports.changeHandle(g_uid)
 	})
 }
 module.exports.changeHandle = (g_uid) => {
+	console.log("GOT CALLED A BITCH")
 	if (obs.actions.temporary[g_uid] == undefined) {
 		obs.actions.temporary[g_uid] = {};
 	}
-	console.log($(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions][data=MIDI] select[type=MIDIOutput] option:selected`))
 	obs.actions.temporary[g_uid].output = {
 		actionType: 'midi',
-		controller: $(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions][data=MIDI] select[type=MIDIOutput] option:selected`)[0].attributes.data.value,
-		channel: $(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions][data=MIDI] ul[type=requestOptions] input#channelPicker`).val(),
-		note: $(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions][data=MIDI] ul[type=requestOptions] input#note`).val(),
-		velocity: $(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions][data=MIDI] ul[type=requestOptions] input#velocity`).val(),
-		note_type: $(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions][data=MIDI] select[type=MIDIType] option:selected`)[0].attributes.data.value,
+		controller: $(`table.actionEditor tr[uid=${g_uid}] td[type=requestOptions][data=MIDI] select[type=MIDIOutput] option:selected`)[0].attributes.data.value,
+		channel: parseInt($(`table.actionEditor tr[uid=${g_uid}] td[type=requestOptions][data=MIDI] ul[type=requestOptions] input[id=channel]`)[0].value),
+		note: parseInt($(`table.actionEditor tr[uid=${g_uid}] td[type=requestOptions][data=MIDI] ul[type=requestOptions] input[id=note]`)[0].value),
+		velocity: parseInt($(`table.actionEditor tr[uid=${g_uid}] td[type=requestOptions][data=MIDI] ul[type=requestOptions] input[id=velocity]`)[0].value),
+		note_type: $(`table.actionEditor tr[uid=${g_uid}] td[type=requestOptions][data=MIDI] select[type=MIDIType] option:selected`)[0].attributes.data.value,
 	}
-	console.debug(`[RequestHandler] Saved UID ${g_uid} with data;`,obs.actions.temporary[`${g_uid}`].input)
+	console.debug(`[RequestHandler] Saved UID ${g_uid} with data;`,obs.actions.temporary[`${g_uid}`].output)
 }
 module.exports.event = (g_data,g_uid) => {
 	console.log(g_data,g_uid)
 	var MIDIOutput = new obs.modules.ezmidi.Output(obs.actions.temporary[g_uid].output.controller)
 	MIDIOutput.send(obs.actions.temporary[g_uid].output.note_type,obs.actions.temporary[g_uid].output)
-	/*Object.entries(obs.actions.temporary).forEach((action)=>{
-		if (action[1].input.actionType != 'midi') return;
-		var t_action = action[1];
-		if (t_action.input.controller != g_data.device) return;
-		if (t_action.input.channel != g_data.channel) return;
-		if (t_action.input.note != g_data.note) return;
-		if (t_action.input.velocity != g_data.velocity) return;
-		if (t_action.input.note_type != g_data._type) return;
-		console.debug(`[RequestHandler -> midi] Recieved MIDI Input`,g_data)
-		obs.requestHandler.event('MIDIInput',g_data);
-	})*/
 }

@@ -1,0 +1,37 @@
+midi
+	- MIDIOutput
+
+obs
+	- OpenProjector
+	- TriggerHotkeyByName
+	- TriggerHotkeyBySequence
+	- media
+		- PlayPauseMedia
+		- RestartMedia
+		- StopMedia
+		- NextMedia
+		- PreviousMedia
+	- sources
+		- SetVolume
+		- ToggleMute
+		- SetMute
+		- TakeSourceScreenshot
+	- profiles
+		- SetCurrentProfile
+	- recording
+		- PlayPauseRecording
+		- StartRecording
+		- StopRecording
+		- PauseRecording
+		- ResumeRecording
+	- replay_buffer
+		- PlayPauseReplayBuffer
+		- StartReplayBuffer
+		- StopReplayBuffer
+		- SaveReplayBuffer
+	- scene
+		- SetCurrentScene
+	- streaming
+		- StartStopStreaming
+		- StartStreaming
+		- StopStreaming

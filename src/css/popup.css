@@ -145,9 +145,11 @@ div.popupWindiw div.createBinding table.actionEditor select {
 	margin: 0;
 	padding: 0;
 }
-table.actionEditor td[type=requestOptions] ul[type=requestOptions] {
+table.actionEditor td[type=requestOptions] ul[type=requestOptions],
+table.actionEditor td[type=requestOptions] ul[type=actionOptions] {
 	margin: 0;
 }
-table.actionEditor td[type=requestOptions] ul[type=requestOptions] li {
+table.actionEditor td[type=requestOptions] ul[type=requestOptions] li,
+table.actionEditor td[type=requestOptions] ul[type=actionOptions] li {
 	display: inline-block;
 }

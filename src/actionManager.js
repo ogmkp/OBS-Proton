@@ -72,79 +72,7 @@ module.exports.requestHandle = async (g_request,g_uid) => {
 	$(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions]`).attr('ass','OBS');
 	switch (g_request) {
 		case "MIDIOutput":
-			obs.actions.temporary[g_uid].output = {
-				actionType: "midi",
-				type: "output",
-				controller: '',
-				channel: 0,
-				note: 0,
-				velocity: 0,
-				note_type: "noteon",
-				doToggle: false,
-				toggleStatus: null,
-				hold_duration: 1,
-			}
-			$(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions]`).attr('data','MIDI');
-			$(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions]`).attr('ass','MIDI');
-			RequestHTMLContent = `
-			<table>
-				<tr>
-					<td>
-						<select class="browser-default" type="MIDIOutput">
-
-						</select>
-					</td>
-					<td>
-						<select class="browser-default" type="MIDIType">
-							<option data="noteon">Note On</option>
-							<!--option data="noteoff">Note Off</option>
-							<option data="poly aftertouch">Poly Aftertouch</option>
-							<option data="cc">CC</option>
-							<option data="program">Program</option>
-							<option data="channel aftertouch">Channel Aftertouch</option>
-							<option data="pitch">Pitch</option>
-							<option data="position">Position</option>
-							<option data="mtc">Timecode</option>
-							<option data="select">Select</option>
-							<option data="clock">Clock</option>
-							<option data="start">Start</option>
-							<option data="continue">Continue</option>
-							<option data="stop">Stop</option>
-							<option data="activesense">MIDI Active Sense</option>
-							<option data="reset">Reset</option-->
-						</select>
-					</td>
-				</tr>
-			</table>
-			<ul type="requestOptions">
-				<li>
-					<label for="channelPicker">Channel</label>
-					<input type="number" id="channelPicker" min="0" max="15"/>
-				</li>
-				<li>
-					<label for="note">Note</label>
-					<input type="number" id="note" min="0" max="127"/>
-				</li>
-				<li>
-					<label for="velocity">Velocity</label>
-					<input type="number" id="velocity" min="0" max="127"/>
-				</li>
-			</ul>
-			`;
-			setInterval(()=>{
-				$(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions] input#channelPicker`).change(()=>{
-					obs.actions.temporary[g_uid].output.channel = parseInt($(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions] input#channelPicker`).val())
-				})
-				$(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions] input#note`).change(()=>{
-					obs.actions.temporary[g_uid].output.note = parseInt($(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions] input#note`).val())
-				})
-				$(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions] input#velocity`).change(()=>{
-					obs.actions.temporary[g_uid].output.velocity = parseInt($(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions] input#velocity`).val())
-				})
-				$(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions] select[type=MIDIOutput]`).change(()=>{
-					obs.actions.temporary[g_uid].output.controller = $(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions] select[type=MIDIOutput] option:selected`)[0].attributes.data.value
-				})
-			},200)
+			return
 			break;
 		case "OpenProjector":
 			$(`table.actionEditor tr[UID=${g_uid}] td[type=requestOptions]`).attr('data',g_request);
@@ -269,6 +197,13 @@ module.exports.jqueryListener = async () => {
 			<option data="${g_output}">${g_output}</option>
 			`)
 	})
+	easyMIDI.getInputs().forEach((g_output)=>{
+		if ($(`table.actionEditor td[type=actionOptions][data=MIDI] select[type=MIDIInput] option`).length == easyMIDI.getInputs().length) return;
+
+		$("table.actionEditor td[type=actionOptions][data=MIDI] select[type=MIDIInput]").append(`
+			<option data="${g_output}">${g_output}</option>
+			`)
+	})
 	/*$("table.actionEditor td[type=actionOptions][data=MIDI]").click((me)=>{
 		var UID = "";
 		if (me.target.outerHTML.startsWith(`<span type="`)) {
@@ -328,7 +263,7 @@ module.exports.jqueryListener = async () => {
 			obs.actions.temporary[UID] = {};
 		}
 		obs.actions.temporary[UID].outputAction = selectedOption;
-		module.exports.requestHandle(selectedOption,UID);
+		//module.exports.requestHandle(selectedOption,UID);
 
 		$(`table.actionEditor tr[uid=${UID}] td[type=requestOptions][ass=OBS] select`).change((me)=>{
 			console.debug(me)
