@@ -119,6 +119,7 @@ div.popupWindow div.createBinding table.actionEditor td {
 	padding: 0;
 	padding-left: 3px;
 	padding-right: 3px;
+	min-width: 120px;
 }
 div.popupWindow div.createBinding table.actionEditor td select{
 	width: 130px;
@@ -126,6 +127,14 @@ div.popupWindow div.createBinding table.actionEditor td select{
 
 	padding: 0;
 	margin: 0;
+}
+div.popupWindow div.createBinding table.actoinEditor td[type=actionOption] {
+	max-width: 120px !important;
+	width: 120px !important;
+}
+div.popupWindow div.createBinding table.actoinEditor td[type=actionOption] ul {
+	max-width: 120px !important;
+	width: 120px !important;
 }
 div.popupWindow div.createBinding table.actionEditor td[type=actionOption] ul li {
 	display: inline;
