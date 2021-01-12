@@ -1,0 +1,16 @@
+{
+	"midi": [
+		"midi"
+	],
+	"obs": [
+		"Projector",
+		"Hotkey",
+		"Media",
+		"Source",
+		"Profile",
+		"Recording",
+		"ReplayBuffer",
+		"Scene",
+		"Streaming",
+	]
+}
