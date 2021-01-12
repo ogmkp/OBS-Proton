@@ -381,6 +381,7 @@ module.exports.defaultHTML = () => {
 			</td>
 			<td type="selectAction">
 				<select class="browser-default" type="actions">
+					<option data="NULL" selected disabled>Select Input</option>
 					<option data="MIDIInput">MIDI Input</option>
 					<optgroup label="OBS" group="obs">
 						<optgroup label="&nbsp;Scene">
@@ -457,11 +458,12 @@ module.exports.defaultHTML = () => {
 					</optgroup>
 				</select>
 			</td>
-			<td type="actionOptions" data="MIDI">
-				<span><span type="controller">No Device Set</span> C:<span type="channel">0</span> N:<span type="note">0</span> V:<span type="velocity">0</span></span>
+			<td type="actionOptions">
+			
 			</td>
 			<td type="actionRequest">
 				<select class="browser-default">
+					<option data="NULL" selected disabled>Select Output</option>
 					<option data="MIDIOutput">MIDI Out</option>
 					<optgroup label="OBS" data="obs">
 						<option data="OpenProjector">Open Projector</option>
